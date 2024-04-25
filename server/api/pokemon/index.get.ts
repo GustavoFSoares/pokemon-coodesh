@@ -4,22 +4,6 @@ import {
 } from "../interfaces/PokemonInterface";
 
 const API = "https://pokeapi.co/api/v2/";
-/* 
-  const repo = await $fetch('https://api.github.com/repos/nuxt/nuxt', {
-    headers: {
-      Authorization: `token ${config.githubToken}`
-    }
-  })
-*/
-
-/* const { data } = await axios.get(`${getters.apiUrl}/pokemon/${id}`);
-
-  const pokemonData = {
-    id,
-    types: data.types.map((pokemonType) => pokemonType.type.name),
-  };
-  commit("STORE_SPECIFIC_POKEMONS", pokemonData);
-  */
 
 async function getPokemonTypes(pokemonId: string): Promise<string[]> {
   const data = await $fetch<IPokemonTypeResponse>(

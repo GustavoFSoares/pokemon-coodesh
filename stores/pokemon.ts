@@ -14,7 +14,7 @@ export const usePokemonStore = defineStore({
   },
   actions: {
     sotrePokemons(pokemons: PokemonsList) {
-      this.pokemons = pokemons;
+      this.pokemons = [...this.pokemons, ...pokemons];
     },
   },
 });
