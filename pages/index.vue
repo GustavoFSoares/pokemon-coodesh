@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import { usePokemonStore } from "@/stores/pokemon";
 
-import PokemonsList from "@/partials/PokemonsList.vue";
+import PokemonsList from "@/partials/Index/PokemonsList.vue";
 
 const pokemonStore = usePokemonStore();
 
