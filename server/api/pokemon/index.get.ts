@@ -32,14 +32,9 @@ async function getPokemonTypes(pokemonId: string): Promise<string[]> {
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
 
-  let offset = null;
-  if (query) {
-    offset = query.offset;
-  }
-
   const data = await $fetch<IPokemonsResponse>(`${API}/pokemon`, {
     params: {
-      offset,
+      offset: query.offset || null,
       limit: 151,
     },
   });
