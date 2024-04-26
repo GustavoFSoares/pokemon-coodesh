@@ -1,11 +1,5 @@
 <template>
-  <NuxtLink
-    :to="{
-      name: 'pokemon-pokemonid',
-      params: { pokemonid: `${normalizedName}--${id}` },
-    }"
-    class="pokemon-item"
-  >
+  <NuxtLink :to="`/pokemon/${normalizedName}--${id}`" class="pokemon-item">
     <div class="pokemon-item__image-container">
       <img class="pokemon-item__image" :src="image" :alt="`${id} - ${name}`" />
     </div>
