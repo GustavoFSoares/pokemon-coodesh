@@ -28,8 +28,6 @@ import PokemonCard from "@/partials/Pokemon/PokemonCard.vue";
 import PokemonStats from "@/partials/Pokemon/PokemonStats.vue";
 import PokemonAbilities from "@/partials/Pokemon/PokemonAbilities.vue";
 
-import { useRoute } from "vue-router";
-
 const $route = useRoute();
 
 const pokemonId = computed(() => {
@@ -46,16 +44,26 @@ const pokemonId = computed(() => {
   return receivedId[0];
 });
 
-const maisPokemonType = computed(() => {
-  return pokemonData.value?.types[0] || "default";
-});
-
 const { data: pokemonData } = await useFetch("/api/pokemon/:id", {
   key: "pokemons",
   method: "GET",
   params: {
     id: pokemonId,
   },
+});
+
+useSeoMeta({
+  ogTitle: `${pokemonData.value.name.toUpperCase()} -- Pokedex - Codedash`,
+  ogDescription:
+    "Este projeto foi concebido como um teste para demonstrar habilidades utilizando Nuxt, Vue3 e Typescript",
+  ogImage: pokemonData.value.image,
+  twitterCard: "summary_large_image",
+});
+
+import { useRoute } from "vue-router";
+
+const maisPokemonType = computed(() => {
+  return pokemonData.value?.types[0] || "default";
 });
 </script>
 
