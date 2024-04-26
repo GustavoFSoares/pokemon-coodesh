@@ -8,7 +8,7 @@
   </ul>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { usePokemonStore } from "@/stores/pokemon";
 
 import PokemonItem from "./PokemonItem.vue";
@@ -20,9 +20,6 @@ const pokemonsList = computed(() => pokemonStore.filteredPokemons);
 <style lang="scss" scoped>
 .pokemons-list {
   @apply grid gap-x-6 gap-y-4 pb-3;
-
-  @apply mx-4;
-  @apply lg:mx-0;
 
   @apply grid-cols-2;
   @apply md:grid-cols-4;

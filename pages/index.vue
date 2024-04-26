@@ -2,7 +2,10 @@
   <section class="pokemon-list-page">
     <div class="pokemon-list-page__container" id="pokemon-list-target-scroll">
       <div class="pokemon-list-page__content">
-        <SearchBar v-model="searchedInput" />
+        <SearchBar
+          class="pokemon-list-page__content-search-bar"
+          v-model="searchedInput"
+        />
 
         <h1>Pokémons</h1>
 
@@ -74,7 +77,7 @@ onServerPrefetch(async () => {
 
 <style lang="scss" scoped>
 .pokemon-list-page {
-  @apply pr-9 pt-[18px] h-[100vh];
+  @apply lg:pr-9 lg:pt-[18px] lg:h-[100vh];
 
   &__loading {
     @apply w-full flex justify-center;
@@ -101,8 +104,18 @@ onServerPrefetch(async () => {
   &__content {
     @apply max-w-[824px] mx-auto pt-2;
 
+    @apply px-4;
+    @apply lg:px-0;
+
+    &-search-bar {
+      @apply mx-1 mb-8;
+      @apply lg:mx-0 lg:mb-0;
+    }
+
     h1 {
       @apply mt-12 mb-10 text-sm leading-4 font-bold;
+
+      @apply sm:hidden;
     }
   }
 }
