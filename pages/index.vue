@@ -28,6 +28,14 @@
 <script lang="ts" setup>
 import { usePokemonStore } from "@/stores/pokemon";
 
+useSeoMeta({
+  ogTitle: "Pokedex - Codedash",
+  ogDescription:
+    "Este projeto foi concebido como um teste para demonstrar habilidades utilizando Nuxt, Vue3 e Typescript",
+  ogImage: "/pokedex.webp",
+  twitterCard: "summary_large_image",
+});
+
 import SearchBar from "@/partials/Index/SearchBar.vue";
 import PokemonsList from "@/partials/Index/PokemonsList.vue";
 import ScrollLoader from "@/partials/Index/ScrollWatcher.vue";
