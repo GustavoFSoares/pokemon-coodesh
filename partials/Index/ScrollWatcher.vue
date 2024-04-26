@@ -1,15 +1,29 @@
 <template></template>
 
 <script setup>
+const $emit = defineEmits("end-page");
+
 onMounted(() => {
+  let isWaiting = false;
+
   document
-    .querySelector(".pokemon-list-page")
-    .addEventListener("scroll", () => {
-      console.log(
-        window.innerHeight + window.scrollY >= document.body.offsetHeight
-      );
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        console.log("FIM");
+    .querySelector("#pokemon-list-target-scroll")
+    .addEventListener("scroll", (ev) => {
+      if (isWaiting) {
+        return;
+      }
+
+      if (
+        ev.target.scrollTop + document.body.offsetHeight >=
+        ev.target.scrollHeight
+      ) {
+        isWaiting = true;
+
+        $emit("end-page");
+
+        setTimeout(() => {
+          isWaiting = false;
+        }, 2000);
       }
     });
 });

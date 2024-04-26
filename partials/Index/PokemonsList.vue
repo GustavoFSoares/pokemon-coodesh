@@ -11,13 +11,11 @@
 <script setup lang="ts">
 import { usePokemonStore } from "@/stores/pokemon";
 
-const props = defineProps(["data"]);
-
 import PokemonItem from "./PokemonItem.vue";
 const pokemonStore = usePokemonStore();
 
 const pokemonsList = computed(() => {
-  return props.data;
+  return pokemonStore.pokemons;
 });
 </script>
 
