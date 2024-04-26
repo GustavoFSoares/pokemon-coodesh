@@ -1,9 +1,6 @@
 <template>
   <section class="pokemon-list-page">
-    <div
-      class="pokemon-list-page__container"
-      id="pokemon-list-target-scroll-web"
-    >
+    <div class="pokemon-list-page__container" id="pokemon-list-target-scroll">
       <div class="pokemon-list-page__content">
         <SearchBar
           class="pokemon-list-page__content-search-bar"
@@ -84,7 +81,10 @@ onBeforeMount(async () => {
 
 <style lang="scss" scoped>
 .pokemon-list-page {
-  @apply lg:pr-9 lg:pt-[18px] lg:h-[100vh];
+  @screen lg {
+    @apply pr-9 pt-[18px];
+    height: calc(100vh - 48px);
+  }
 
   &__loading {
     @apply w-full flex justify-center;

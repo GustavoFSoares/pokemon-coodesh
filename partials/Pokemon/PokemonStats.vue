@@ -7,7 +7,10 @@
     >
       <h6 class="pokemon-stats-item__label">{{ getStatName(statKey) }}</h6>
 
-      <div class="pokemon-stats-item__bar pokemon-stats-item-bar">
+      <div
+        class="pokemon-stats-item__bar pokemon-stats-item-bar"
+        :title="statValue"
+      >
         <div
           class="pokemon-stats-item-bar__content"
           :class="`pokemon-stats-item-bar__content--${mainPokemonType}`"
