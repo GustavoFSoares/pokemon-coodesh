@@ -11,9 +11,11 @@
         <PokemonsList />
       </div>
 
-      <div class="pokemon-list-page__loading">
-        <Spinner v-if="isLoading" />
-      </div>
+      <ClientOnly>
+        <div class="pokemon-list-page__loading">
+          <Spinner v-if="isLoading" />
+        </div>
+      </ClientOnly>
     </div>
   </section>
 </template>
@@ -32,7 +34,7 @@ async function loadData() {
   isLoading.value = true;
 
   try {
-    const { data } = await useFetch("/api/pokemon", {
+    const data = await $fetch("/api/pokemon", {
       key: "pokemons",
       method: "GET",
       query: {
@@ -40,11 +42,9 @@ async function loadData() {
       },
     });
 
-    return data.value;
+    return data;
   } finally {
-    setTimeout(() => {
-      isLoading.value = false;
-    }, 2000);
+    isLoading.value = false;
   }
 }
 
