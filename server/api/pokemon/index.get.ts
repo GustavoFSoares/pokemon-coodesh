@@ -1,14 +1,12 @@
 import {
-  IPokemonTypeResponse,
+  IPokemonResponse,
   IPokemonsResponse,
 } from "../interfaces/PokemonInterface";
 
 const API = "https://pokeapi.co/api/v2/";
 
 async function getPokemonTypes(pokemonId: string): Promise<string[]> {
-  const data = await $fetch<IPokemonTypeResponse>(
-    `${API}/pokemon/${pokemonId}`
-  );
+  const data = await $fetch<IPokemonResponse>(`${API}/pokemon/${pokemonId}`);
 
   return data.types.map((pokemonType) => pokemonType.type.name);
 }

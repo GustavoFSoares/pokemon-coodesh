@@ -73,11 +73,18 @@ function handleEndPage() {
 onServerPrefetch(async () => {
   await handleLoadData();
 });
+
+onBeforeMount(async () => {
+  await handleLoadData();
+});
 </script>
 
 <style lang="scss" scoped>
 .pokemon-list-page {
-  @apply lg:pr-9 lg:pt-[18px] lg:h-[100vh];
+  @screen lg {
+    @apply pr-9 pt-[18px];
+    height: calc(100vh - 48px);
+  }
 
   &__loading {
     @apply w-full flex justify-center;

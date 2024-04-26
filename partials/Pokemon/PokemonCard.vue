@@ -1,63 +1,54 @@
 <template>
-  <NuxtLink :to="`/pokemon/${normalizedName}--${id}`" class="pokemon-item">
-    <div class="pokemon-item__image-container">
-      <img class="pokemon-item__image" :src="image" :alt="`${id} - ${name}`" />
+  <div class="pokemon-card">
+    <div class="pokemon-card__image-container">
+      <img class="pokemon-card__image" :src="image" :alt="`${id} - ${name}`" />
     </div>
 
-    <h3 class="pokemon-item__name">{{ name }}</h3>
-    <h4 class="pokemon-item__code">Cód: {{ id }}</h4>
+    <h1 class="pokemon-card__name">{{ name }}</h1>
 
-    <div class="pokemon-item__types">
+    <div class="pokemon-card__types">
       <p
-        :class="`pokemon-item__type pokemon-item__type--${pokemonType}`"
+        :class="`pokemon-card__type pokemon-card__type--${pokemonType}`"
         v-for="pokemonType in types"
         :key="pokemonType"
       >
         {{ pokemonType }}
       </p>
     </div>
-  </NuxtLink>
+  </div>
 </template>
 
-<script setup lang="ts">
-const props = defineProps<{
-  id: string;
+<script lang="ts" setup>
+defineProps<{
+  id: number;
   name: string;
   types: string[];
   image: string;
 }>();
-
-const normalizedName = computed(() =>
-  props.name.replaceAll(" ", "-").toLocaleLowerCase()
-);
 </script>
 
 <style lang="scss" scoped>
-.pokemon-item {
-  @apply bg-white px-[10px] pt-3 pb-[18px] flex flex-col items-center rounded-lg;
+.pokemon-card {
+  @apply bg-white flex flex-col items-center;
 
   &__image {
     &-container {
-      @apply size-[60px];
+      @apply size-[190px];
     }
 
     @apply h-full;
   }
 
   &__name {
-    @apply capitalize mt-[14px] font-bold text-sm leading-4;
-  }
-
-  &__code {
-    @apply mt-[15px] font-bold text-[9px] leading-[9px];
+    @apply capitalize mt-[7px] font-bold text-sm leading-4;
   }
 
   &__types {
-    @apply mt-[53px] flex gap-1 justify-center flex-wrap w-full;
+    @apply mt-[29px] flex gap-1 justify-center flex-wrap w-full;
   }
 
   &__type {
-    @apply bg-pokemon-type-default uppercase text-[9px] leading-[10px] basis-[48%] font-semibold text-white rounded-lg w-16 h-4 flex justify-center items-center;
+    @apply bg-pokemon-type-default uppercase text-[9px] leading-[10px] font-semibold text-white rounded-lg w-16 h-4 flex justify-center items-center;
 
     &--bug {
       @apply bg-pokemon-type-bug;
