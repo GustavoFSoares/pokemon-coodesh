@@ -7,7 +7,7 @@ onMounted(() => {
   let isWaiting = false;
 
   document
-    .querySelector("#pokemon-list-target-scroll")
+    .querySelector("#pokemon-list-target-scroll-web")
     .addEventListener("scroll", (ev) => {
       if (isWaiting) {
         return;

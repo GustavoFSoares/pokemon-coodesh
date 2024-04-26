@@ -1,6 +1,9 @@
 <template>
   <section class="pokemon-list-page">
-    <div class="pokemon-list-page__container" id="pokemon-list-target-scroll">
+    <div
+      class="pokemon-list-page__container"
+      id="pokemon-list-target-scroll-web"
+    >
       <div class="pokemon-list-page__content">
         <SearchBar
           class="pokemon-list-page__content-search-bar"
@@ -71,6 +74,10 @@ function handleEndPage() {
 }
 
 onServerPrefetch(async () => {
+  await handleLoadData();
+});
+
+onBeforeMount(async () => {
   await handleLoadData();
 });
 </script>

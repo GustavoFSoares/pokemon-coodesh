@@ -34,3 +34,12 @@ export interface IPokemonAbilitiesResponse {
     short_effect: string;
   }[];
 }
+
+export type PokemonStats = {
+  hp: number;
+  attack: number;
+  defense: number;
+  "special-attack": number;
+  "special-defense": number;
+  speed: number;
+};

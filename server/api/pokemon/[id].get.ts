@@ -1,9 +1,10 @@
 import {
   IPokemonAbilitiesResponse,
   IPokemonResponse,
+  PokemonStats,
 } from "../interfaces/PokemonInterface";
 
-const API = "https://pokeapi.co/api/v2/";
+const API = "https://pokeapi.co/api/v2";
 
 export default defineEventHandler(async (event) => {
   const { id: pokemonId } = getQuery(event);
@@ -12,9 +13,14 @@ export default defineEventHandler(async (event) => {
     `${API}/pokemon/${pokemonId}`
   );
 
-  const speciesData = await $fetch<IPokemonAbilitiesResponse>(
-    `${API}/ability/${pokemonId}`
-  );
+  let speciesData = null;
+  try {
+    speciesData = await $fetch<IPokemonAbilitiesResponse>(
+      `${API}/ability/${pokemonId}`
+    );
+  } catch (err) {
+    console.log(`No abilities found for pokemon ${pokemonId}`);
+  }
 
   const stats = pokemonData.stats.reduce<{ [keyof: string]: number }>(
     (amount, statData) => {
@@ -23,7 +29,7 @@ export default defineEventHandler(async (event) => {
       return amount;
     },
     {}
-  );
+  ) as any as PokemonStats;
 
   let effectEntries = ["?"];
   if (speciesData) {
@@ -33,7 +39,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const pokemon = {
-    id: pokemonId,
+    id: pokemonData.id,
     stats,
     effectEntries,
     name: pokemonData.name,
