@@ -30,8 +30,6 @@ export const usePokemonStore = defineStore({
       this.pokemons = [...this.pokemons, ...pokemons];
     },
     setSearch(input: string | null) {
-      console.log("1234", input);
-
       this.search = input;
     },
   },
