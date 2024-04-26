@@ -53,10 +53,10 @@ const { data: pokemonData } = await useFetch("/api/pokemon/:id", {
 });
 
 useSeoMeta({
-  ogTitle: `${pokemonData.value.name.toUpperCase()} -- Pokedex - Codedash`,
+  ogTitle: `${pokemonData.value?.name.toUpperCase() + " --" || "Pokemon não encontrado"} Pokedex - Codedash`,
   ogDescription:
     "Este projeto foi concebido como um teste para demonstrar habilidades utilizando Nuxt, Vue3 e Typescript",
-  ogImage: pokemonData.value.image,
+  ogImage: pokemonData.value?.image || "/pokedex.webp",
   twitterCard: "summary_large_image",
 });
 
