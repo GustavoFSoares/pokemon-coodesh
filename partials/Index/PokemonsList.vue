@@ -14,9 +14,7 @@ import { usePokemonStore } from "@/stores/pokemon";
 import PokemonItem from "./PokemonItem.vue";
 const pokemonStore = usePokemonStore();
 
-const pokemonsList = computed(() => {
-  return pokemonStore.pokemons;
-});
+const pokemonsList = computed(() => pokemonStore.filteredPokemons);
 </script>
 
 <style lang="scss" scoped>

@@ -2,10 +2,12 @@
   <section class="pokemon-list-page">
     <div class="pokemon-list-page__container" id="pokemon-list-target-scroll">
       <div class="pokemon-list-page__content">
-        <h1>index page</h1>
+        <SearchBar v-model="searchedInput" />
+
+        <h1>Pokémons</h1>
 
         <ClientOnly>
-          <ScrollLoader @end-page="handleLoadData" />
+          <ScrollLoader @end-page="handleEndPage" />
         </ClientOnly>
 
         <PokemonsList />
@@ -23,14 +25,23 @@
 <script lang="ts" setup>
 import { usePokemonStore } from "@/stores/pokemon";
 
+import SearchBar from "@/partials/Index/SearchBar.vue";
 import PokemonsList from "@/partials/Index/PokemonsList.vue";
 import ScrollLoader from "@/partials/Index/ScrollWatcher.vue";
 
 const pokemonStore = usePokemonStore();
 
 const isLoading = ref(false);
+const searchedInput = ref<string | null>(null);
 
-async function loadData() {
+watch(
+  () => searchedInput.value,
+  () => {
+    pokemonStore.search = searchedInput.value;
+  }
+);
+
+async function handleLoadData() {
   isLoading.value = true;
 
   try {
@@ -42,20 +53,18 @@ async function loadData() {
       },
     });
 
-    return data;
+    await pokemonStore.sotrePokemons(data);
   } finally {
     isLoading.value = false;
   }
 }
 
-async function handleLoadData() {
-  const pokemonData = await loadData();
-
-  if (!pokemonData) {
+function handleEndPage() {
+  if (searchedInput.value) {
     return;
   }
 
-  await pokemonStore.sotrePokemons(pokemonData);
+  handleLoadData();
 }
 
 onServerPrefetch(async () => {
@@ -91,6 +100,10 @@ onServerPrefetch(async () => {
 
   &__content {
     @apply max-w-[824px] mx-auto pt-2;
+
+    h1 {
+      @apply mt-12 mb-10 text-sm leading-4 font-bold;
+    }
   }
 }
 </style>
