@@ -1,5 +1,11 @@
 <template>
-  <div class="pokemon-item">
+  <NuxtLink
+    :to="{
+      name: 'pokemon-pokemonid',
+      params: { pokemonid: `${normalizedName}--${id}` },
+    }"
+    class="pokemon-item"
+  >
     <div class="pokemon-item__image-container">
       <img class="pokemon-item__image" :src="image" :alt="`${id} - ${name}`" />
     </div>
@@ -16,16 +22,20 @@
         {{ pokemonType }}
       </p>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   id: string;
   name: string;
   types: string[];
   image: string;
 }>();
+
+const normalizedName = computed(() =>
+  props.name.replaceAll(" ", "-").toLocaleLowerCase()
+);
 </script>
 
 <style lang="scss" scoped>
