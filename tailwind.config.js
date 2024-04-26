@@ -12,9 +12,8 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xs: { max: "425px" },
-        sm: { max: "765px" },
-        md: { min: "766px", max: "890px" },
+        sm: { max: "425px" },
+        md: { min: "426px", max: "890px" },
         lg: { min: "891px" },
       },
       colors: {
