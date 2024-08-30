@@ -3,6 +3,8 @@
 
 # Pokedex - Codedash
 
+[Preview](http://gfs-pokedex.netlify.app/)
+
 Este projeto foi concebido como um teste para demonstrar habilidades utilizando Nuxt, Vue3 e Typescript
 
 # Tecnologias utilizads
